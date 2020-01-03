@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css"  href="d:/Rishu/Playlist/style.css"> 
+        <title>Playlist</title>
+    </head>
+    <body>
+        <div class="user">
+            <p>Type the youtube URL</p>
+            <input type="text" id="txt" value=""><p></p>
+            <button onclick="validate()">Add</button>
+        </div>    
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <th>My Playlist</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                </tr>
+            </tbody>
+            
+        </table>
+        <!-- <p id="res"></p> -->
+        <script>
+            function validate() {
+                var req = document.getElementById("txt").value;
+                var expression =  
+/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+                var regex = new RegExp(expression);
+                if(req.charAt(0) == 'w')
+                    alert("Please use http");
+                else if(req.match(regex))
+                    myFunction();
+                else
+                    alert("Invalid URL");
+            }
+
+            function myFunction() { 
+                var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+
+                // Insert a row in the table 
+                var newRow   = tableRef.insertRow(tableRef.rows.length);
+
+                // Insert a cell in the row 
+                var newCell  = newRow.insertCell(0);
+
+                // Create a 'a' tag
+                var a = document.createElement('a');
+
+                // Append a text node to the cell
+                var myText = document.getElementById("txt").value;
+                var myLink  = document.createTextNode(myText);
+                a.appendChild(myLink);
+                a.title = myText;
+                a.href = myText;
+                a.target = "_blank";
+                newCell.appendChild(a); 
+            }
+        </script>
+    </body>
+</html>
